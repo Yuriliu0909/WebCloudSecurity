@@ -56,4 +56,9 @@ public class Food {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+
+    @Override
+    public String toString() {
+        return "Name: "+this.name+" Price: "+this.price+" Description: "+this.description+" Calories: "+this.calories;
+    }
 }

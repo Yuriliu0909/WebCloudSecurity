@@ -13,10 +13,10 @@ import java.net.Socket;
      * connection with that client.  Arguably just about the simplest
      * server you can write.
      */
-    public class ServerEnd {
+    public class ThreadedServer {
     static ServerUI s;
 
-    public ServerEnd(ServerUI s) throws IOException {
+    public ThreadedServer(ServerUI s) throws IOException {
             int port = 9090;
             ServerSocket listener = new ServerSocket(port);
             System.out.println("Server started on 9090");
@@ -30,6 +30,6 @@ import java.net.Socket;
          * Runs the server.
          */
         public static void main(String[] args) throws IOException {
-            new ServerEnd(s);
+            new ThreadedServer(s);
         }
 }

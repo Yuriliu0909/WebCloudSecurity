@@ -6,10 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import server.ServerEnd;
 import server.ServerService;
-
-import java.io.IOException;
 
 public class ServerUI extends Application {
     static ServerUI s;
@@ -45,8 +42,6 @@ public class ServerUI extends Application {
     }
 
     public static void main(String[] args) {
-
         Application.launch(args);
     }
-
 }

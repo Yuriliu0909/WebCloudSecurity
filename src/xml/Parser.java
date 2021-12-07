@@ -3,6 +3,8 @@ package xml;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.StringWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,22 +14,35 @@ import java.util.ArrayList;
 
 public class Parser {
     //creat xml file
-    public String createXML() {
-        StringWriter sw = new StringWriter();
-        Food food1 = new Food("Belgian Waffles", "$5.95", "Two of our famous", 650);
-        Food food2 = new Food("Strawberry Belgian Waffles", "$7.95", "Two of our famous", 900);
+//    public String createXML() {
+//        StringWriter sw = new StringWriter();
+//        Food food1 = new Food("Belgian Waffles", "$5.95", "Two of our famous", 650);
+//        Food food2 = new Food("Strawberry Belgian Waffles", "$7.95", "Two of our famous", 900);
+//        ArrayList<Food> foods = new ArrayList<>();
+//        foods.add(food1);
+//        foods.add(food2);
+//        BreakfastMenu bm = new BreakfastMenu(foods);
+//        Document document = new Document(bm);
+//        try {
+//            JAXBContext context = JAXBContext.newInstance(Document.class);
+//            Marshaller marshaller = context.createMarshaller();
+//            marshaller.marshal(document, sw);
+//        } catch (JAXBException e) {
+//            e.printStackTrace();
+//        }
+//        return sw.toString();
+//    }
+
+    public ArrayList<Food> getFoodItems() {
         ArrayList<Food> foods = new ArrayList<>();
-        foods.add(food1);
-        foods.add(food2);
-        BreakfastMenu bm = new BreakfastMenu(foods);
-        Document document = new Document(bm);
         try {
-            JAXBContext context = JAXBContext.newInstance(Document.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.marshal(document, sw);
+            JAXBContext context = JAXBContext.newInstance(BreakfastMenu.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            BreakfastMenu breakfastMenu = (BreakfastMenu) unmarshaller.unmarshal(new File("src/xml/restaurantmenu.xml"));
+            foods = breakfastMenu.getFoodItems();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        return sw.toString();
+        return foods;
     }
 }

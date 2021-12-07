@@ -4,8 +4,6 @@ import GUI.ServerUI;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
-import java.io.IOException;
-
 public class ServerService extends Service<ServerUI> {
     ServerUI s;
 
@@ -23,7 +21,7 @@ public class ServerService extends Service<ServerUI> {
             @Override
             protected ServerUI call() throws Exception {
                 System.out.println("YURI");
-                new ServerEnd(s);
+                new ThreadedServer(s);
                 return s;
             }
         };
